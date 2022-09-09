@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  scope module: :user do
+    root to: "homes#top"
+  end
+  #ユーザー側
+  devise_for :users,skip: [:passwords], controllers: {
+  registrations: "user/registrations",
+  sessions: 'user/sessions'
+  }
+  #管理者側
+  devise_for :admin,skip: [:passwords], controllers: {
+  sessions: "admin/sessions",
+  registrations: "admin/registrations"
+  }
+
 end
