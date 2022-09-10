@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   scope module: :user do
     root to: "homes#top"
+    resources :posts, only: [:new, :create, :index, :show, :edit]
   end
   #ユーザー側
   devise_for :users,skip: [:passwords], controllers: {
