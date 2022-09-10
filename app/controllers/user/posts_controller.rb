@@ -2,7 +2,7 @@ class User::PostsController < ApplicationController
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -11,6 +11,7 @@ class User::PostsController < ApplicationController
   end
 
   def index
+    @posts = Post.all
   end
 
   def show
@@ -18,12 +19,12 @@ class User::PostsController < ApplicationController
 
   def edit
   end
-  
-  
+
+
   private
-  
+
   def post_params
-    #後で動画変更
+    #後で動画に変更
     params.require(:post).permit(:image, :title, :explanation)
   end
 end
