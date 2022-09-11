@@ -1,2 +1,19 @@
 <h1>User::Posts#edit</h1>
-<p>Find me in app/views/user/posts/edit.html.erb</p>
+<%= form_with model: @post do |f| %>
+ <div class form-group>
+   <!----後で変更>-->
+   <%= f.label :image, "動画" %>
+   <%= f.file_field :image, accept: "image/*" %>
+ </div>
+ <div class form-group>
+   <%= f.label :title, "タイトル" %>
+   <%= f.text_field :title, autofocus: true %>
+ </div>
+ <div class form-group>
+   <%= f.label :explanation, "内容" %>
+   <%= f.text_area :explanation, autofocus: true %>
+ </div>
+ <div class form-group>
+   <%= f.submit "変更する" %>
+ </div>
+<% end %>
