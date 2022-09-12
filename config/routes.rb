@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   #ユーザー側
   devise_for :users,skip: [:passwords], controllers: {
   registrations: "user/registrations",
@@ -17,7 +18,11 @@ Rails.application.routes.draw do
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
     end
+    
   end
 
 
