@@ -2,9 +2,9 @@ class User::PostCommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
     comment = PostComment.new(post_comment_params)
-    #コメントしているユーザーとログインしているユーザーが一致
+    #コメントしているユーザーにログインしているユーザーを代入
     comment.user_id = current_user.id
-    #コメントしている投稿と投稿が一致
+    #コメントのpost_idカラムにpostのidを代入
     comment.post_id = post.id
     comment.save
     redirect_to post_path(post)

@@ -5,6 +5,19 @@
   <%= image_tag @post.get_image %>
   <p>title：<%= @post.title %></p>
   <p>説明：<%= @post.explanation %></p>
+  <% if @post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorites_path(@post.id), method: :delete do %>
+        ♥<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(@post.id), method: :post do %>
+        ♡<%= @post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
   <p>コメント数：<%= @post.post_comments.count %></p>
   <% if @post.user == current_user %>
     <%= link_to "編集", edit_post_path(@post.id) %>
@@ -26,7 +39,8 @@
     <%= post_comment.user.name %>
     <%= post_comment.comment %><%= post_comment.created_at.strftime('%Y/%m/%d') %>
     <% if post_comment.user == current_user %>
-      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment.id), method: :delete %>
+      <!----上記()内はネストした時の書き方で、親要素,子要素になる>
     <% end %>
   <% end %>
 </div>
