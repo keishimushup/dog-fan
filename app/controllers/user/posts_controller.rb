@@ -40,6 +40,6 @@ class User::PostsController < ApplicationController
 
   def post_params
     #後で動画に変更
-    params.require(:post).permit(:image, :title, :explanation)
+    params.require(:post).permit(:image, :title, :explanation, :genre_id)
   end
 end

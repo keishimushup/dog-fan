@@ -2,8 +2,10 @@ class Post < ApplicationRecord
   #後で動画に変更
   has_one_attached :image
   belongs_to :user
+  belongs_to :genre
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  
 
   def get_image
     unless image.attached?
