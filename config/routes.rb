@@ -14,17 +14,16 @@ Rails.application.routes.draw do
 
   scope module: :user do
     root to: "homes#top"
-    resources :users, only: [:show, :edit, :update]
-    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-      resources :post_comments, only: [:create, :destroy]
-      resource :favorites, only: [:create, :destroy]
+    resources :users, only: [:show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-    
+    resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
+
   end
-
-
 
 end

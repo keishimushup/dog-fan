@@ -1,8 +1,10 @@
 <h1>User::Posts#index</h1>
 <% @posts.each do |post| %>
 <div>
-  <%= image_tag post.user.get_profile_image(100,100) %>
-  <p><%= post.user.name %></p>
+  <%= link_to user_path(post.user.id) do %>
+    <%= image_tag post.user.get_profile_image(100,100) %>
+    <p><%= post.user.name %></p>
+  <% end %>
   <%= link_to post_path(post.id) do %>
     <%= image_tag post.get_image %>
   <% end %>
