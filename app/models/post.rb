@@ -19,4 +19,7 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
+  def self.looks(search, word)
+    @post = Po.where("title LIKE?","%#{word}%")
+  end
 end

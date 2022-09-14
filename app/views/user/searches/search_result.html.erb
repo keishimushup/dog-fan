@@ -1,0 +1,47 @@
+<h2>検索結果</h2>
+
+<table class="table table-hover table-inverse">
+  <% if @range == "User" %>
+  <!--検索モデルがUserの時-->
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image(50,50) %></td>
+          <td><%= user.name %></td>
+          <td>フォロー数: <%= user.followings.count %></td>
+          <td>フォロワー数: <%= user.followers.count %></td>
+          <td><%= link_to "ユーザー詳細", user_path(user.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+  <!--検索モデルがPostの時-->
+    <% @posts.each do |post| %>
+      <div>
+        <%= link_to user_path(post.user.id) do %>
+          <%= image_tag post.user.get_profile_image(100,100) %>
+          <p><%= post.user.name %></p>
+        <% end %>
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.get_image %>
+        <% end %>
+        <p>title：<%= post.title %></p>
+        <p>説明：<%= post.explanation %></p>
+        <% if post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(post.id), method: :delete do %>
+              ♥<%= post.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to post_favorites_path(post.id), method: :post do %>
+              ♡<%= post.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
+        <p>コメント数:<%= post.post_comments.count %></p>
+      </div>
+    <% end %>
+  <% end %>
+  
