@@ -1,10 +1,13 @@
 class User::SearchesController < ApplicationController
   def search
+    #キーワード検索
     @range = params[:range]
+    #ユーザーの名前から検索
     if @range == "User"
-      @users = User.looks(params[:search], params[:word])
+      @user = User.where("name LIKE ?", "%#{params[:word]}%")
+    #投稿のタイトルから検索
     else
-      @posts = Post.looks(params[:search], params[:word])
+      @post = Post.where("title LIKE ?", "%#{params[:word]}%")
     end
   end
 end

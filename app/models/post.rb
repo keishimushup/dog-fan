@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   belongs_to :genre
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
+
 
   def get_image
     unless image.attached?
@@ -14,12 +14,9 @@ class Post < ApplicationRecord
     end
     image
   end
-  
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
-  def self.looks(search, word)
-    @post = Post.where("title LIKE?","%#{word}%")
-  end
+
 end
