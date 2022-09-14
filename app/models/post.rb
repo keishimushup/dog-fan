@@ -20,6 +20,6 @@ class Post < ApplicationRecord
   end
   
   def self.looks(search, word)
-    @post = Po.where("title LIKE?","%#{word}%")
+    @post = Post.where("title LIKE?","%#{word}%")
   end
 end

@@ -11,7 +11,8 @@ class User::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @genres = Genre.all
+    @posts = params[:name].present? ? Genre.find(params[:name]).posts : Post.all
   end
 
   def show

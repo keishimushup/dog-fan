@@ -1,28 +1,41 @@
 <h1>User::Posts#index</h1>
-<% @posts.each do |post| %>
-<div>
-  <%= link_to user_path(post.user.id) do %>
-    <%= image_tag post.user.get_profile_image(100,100) %>
-    <p><%= post.user.name %></p>
+<h4>キーワード</h4>
+<!--%= render 'homes/search' %>-->
+<h4>ジャンル検索</h4>
+<%= form_tag posts_path, method: :get do %>
+  <% @genres.each do |genre| %>
+    <div class="tag-box">
+      <%= link_to genre.name, posts_path(name: genre.id) %>
+    </div>
   <% end %>
-  <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image %>
-  <% end %>
-  <p>title：<%= post.title %></p>
-  <p>説明：<%= post.explanation %></p>
-  <% if post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorites_path(post.id), method: :delete do %>
-        ♥<%= post.favorites.count %> いいね
+    <div class="tag-box">
+      <%= link_to "全ての投稿へ", posts_path %>
+    </div>
+  <% @posts.each do |post| %>
+    <div>
+      <%= link_to user_path(post.user.id) do %>
+        <%= image_tag post.user.get_profile_image(100,100) %>
+        <p><%= post.user.name %></p>
       <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorites_path(post.id), method: :post do %>
-        ♡<%= post.favorites.count %> いいね
+      <%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image %>
       <% end %>
-    </p>
+      <p>title：<%= post.title %></p>
+      <p>説明：<%= post.explanation %></p>
+      <% if post.favorited_by?(current_user) %>
+        <p>
+          <%= link_to post_favorites_path(post.id), method: :delete do %>
+            ♥<%= post.favorites.count %> いいね
+          <% end %>
+        </p>
+        <% else %>
+        <p>
+          <%= link_to post_favorites_path(post.id), method: :post do %>
+            ♡<%= post.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% end %>
+      <p>コメント数:<%= post.post_comments.count %></p>
+    </div>
   <% end %>
-  <p>コメント数:<%= post.post_comments.count %></p>
-</div>
 <% end %>

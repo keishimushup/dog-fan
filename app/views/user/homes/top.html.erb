@@ -1,3 +1,12 @@
 <h1>User::Homes#top</h1>
 <p>Find me in app/views/user/homes/top.html.erb</p>
+<h4>キーワード検索</h4>
 <%= render 'search' %>
+<h4>ジャンル検索</h4>
+<%= form_tag posts_path, method: :get do %>
+  <% @genres.each do |genre| %>
+    <div class="tag-box">
+      <%= link_to genre.name, posts_path(name: genre.id) %>
+    </div>
+  <% end %>
+<% end %>

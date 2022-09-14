@@ -2,7 +2,7 @@
   <%= form_with url: search_path, local: true, method: :get do |f| %>
     <%= f.text_field :word %>
     <%= f.select :range, options_for_select([['User'], ['Post']]) %>
-    <%= f.select :search, (["部分一致","partial_match"]) %>
+
     <%= f.submit "検索", class: "btn-primary" %>
   <% end %>
 </div>
