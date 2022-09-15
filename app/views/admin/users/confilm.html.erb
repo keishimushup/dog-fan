@@ -1,0 +1,14 @@
+<h2>本当に削除しますか？</h2>
+<table>
+  <tbody>
+    <tr>
+      <td><%= image_tag @user.get_profile_image(50,50) %></td>
+      <td><%= @user.id %></td>
+      <td><%= @user.name %></td>
+      <td><%= @user.email %></td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <%= link_to "削除する", admin_user_path(@user.id), method: :delete %>
+</div>

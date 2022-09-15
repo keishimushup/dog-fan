@@ -8,6 +8,7 @@
       <th>ユーザー名</th>
       <th>メールアドレス</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= link_to "ユーザー詳細", admin_user_path(user.id) %></td>
+      <td><%= link_to "ユーザー削除", admin_path(user.id) %></td>
     </tr>
   </tbody>
 </table>

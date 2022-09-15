@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    resources :users, only: [:show]
+    resources :users, only: [:show, :destroy]
+    get "/users/confilm/:id" => "users#confilm"
   end
 end
