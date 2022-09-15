@@ -24,7 +24,10 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
-
   end
 
+  namespace :admin do
+    root to: "homes#top"
+    resources :users, only: [:show]
+  end
 end
