@@ -22,18 +22,20 @@
       <% end %>
       <p>title：<%= post.title %></p>
       <p>説明：<%= post.explanation %></p>
-      <% if post.favorited_by?(current_user) %>
-        <p>
-          <%= link_to post_favorites_path(post.id), method: :delete do %>
-            ♥<%= post.favorites.count %> いいね
-          <% end %>
-        </p>
-        <% else %>
-        <p>
-          <%= link_to post_favorites_path(post.id), method: :post do %>
-            ♡<%= post.favorites.count %> いいね
-          <% end %>
-        </p>
+      <% if user_signed_in? %>
+        <% if post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(post.id), method: :delete do %>
+              ♥<%= post.favorites.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to post_favorites_path(post.id), method: :post do %>
+              ♡<%= post.favorites.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
       <% end %>
       <p>コメント数:<%= post.post_comments.count %></p>
     </div>
