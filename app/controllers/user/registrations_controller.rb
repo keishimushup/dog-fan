@@ -61,7 +61,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   # end
 
   #新規登録でnameの操作を許可する記述
-   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 

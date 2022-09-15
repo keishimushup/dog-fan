@@ -1,4 +1,7 @@
-<h2>Log in</h2>
+<li>
+  <%= link_to "ゲストログイン（閲覧用）", user_guest_sign_in_path, method: :post %>
+</li>
+<h2>ログイン</h2>
 
 <%= form_with model: @user, url: user_session_path do |f| %>
 
