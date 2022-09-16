@@ -7,7 +7,7 @@
 
 <% @posts.each do |posts| %>
 <div>
-  <%= image_tag posts.get_image %>
+  <%= image_tag posts.get_image(400,400) %>
   <p>タイトル:<%= posts.title %></p>
   <p>内容:<%= posts.explanation %></p>
   <p>♡<%= posts.favorites.count %> いいね</p>

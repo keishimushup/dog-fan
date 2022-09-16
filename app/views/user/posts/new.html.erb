@@ -1,7 +1,6 @@
 <h1>動画投稿フォーム</h1>
   <%= form_with model: @post do |f| %>
-    <h4>動画</h4>
-      <!--後で動画に変更-->
+    <h4>画像</h4>
       <%= f.file_field :image, accept: "image/*" %>
     <h4>タイトル</h4>
       <%= f.text_field :title %>

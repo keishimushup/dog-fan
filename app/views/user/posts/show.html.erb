@@ -6,7 +6,7 @@
   <% end %>
 </div>
 <div>
-  <%= image_tag @post.get_image %>
+  <%= image_tag @post.get_image(400,400) %>
   <p>title：<%= @post.title %></p>
   <p>説明：<%= @post.explanation %></p>
   <p class="favorite-btn_<%= @post.id %>">

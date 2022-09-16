@@ -17,7 +17,7 @@
 <% @posts.each do |posts| %>
 <div>
   <%= link_to post_path(posts.id) do %>
-   <%= image_tag posts.get_image %>
+   <%= image_tag posts.get_image(400,400) %>
   <% end %>
   <p>タイトル:<%= posts.title %></p>
   <p>内容:<%= posts.explanation %></p>

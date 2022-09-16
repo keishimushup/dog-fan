@@ -8,17 +8,30 @@
       <%= link_to genre.name, posts_path(name: genre.id) %>
     </div>
   <% end %>
+  <% if user_signed_in? %>
     <div class="tag-box">
       <%= link_to "全ての投稿へ", posts_path %>
     </div>
+  <% end %>
   <% @posts.each do |post| %>
     <div>
-      <%= link_to user_path(post.user.id) do %>
-        <%= image_tag post.user.get_profile_image(100,100) %>
-        <p><%= post.user.name %></p>
-      <% end %>
-      <%= link_to post_path(post.id) do %>
-        <%= image_tag post.get_image %>
+      <% if user_signed_in? %>
+        <%= link_to user_path(post.user.id) do %>
+          <%= image_tag post.user.get_profile_image(100,100) %>
+          <p><%= post.user.name %></p>
+        <% end %>
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.get_image(400,400) %>
+        <% end %>
+      <% else %>
+      <!--ログインしていなければ新規登録画面へ-->
+        <%= link_to new_user_registration_path do %>
+          <%= image_tag post.user.get_profile_image(100,100) %>
+          <p><%= post.user.name %></p>
+        <% end %>
+        <%= link_to new_user_registration_path do %>
+          <%= image_tag post.get_image(400,400) %>
+        <% end %>
       <% end %>
       <p>title：<%= post.title %></p>
       <p>説明：<%= post.explanation %></p>
