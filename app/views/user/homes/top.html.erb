@@ -1,15 +1,39 @@
-<li>
-  <%= link_to "ゲストログイン（閲覧用）", user_guest_sign_in_path, method: :post %>
-</li>
-<h1>User::Homes#top</h1>
-<p>Find me in app/views/user/homes/top.html.erb</p>
-<h4>キーワード検索</h4>
-<%= render 'search' %>
-<h4>ジャンル検索</h4>
-<%= form_tag posts_path, method: :get do %>
-  <% @genres.each do |genre| %>
-    <div class="tag-box">
-      <%= link_to genre.name, posts_path(name: genre.id) %>
+<div class="row">
+  <div class="col-md-3">
+    <div class="mt-2">
+      <p><%= link_to "ゲストログイン（閲覧用）", user_guest_sign_in_path, method: :post %></p>
     </div>
-  <% end %>
-<% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 mt-5 mb-3" style="text-align:center;">
+    <h1><span>ようこそ！Dog Fanへ！</span></h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 mt-5" style="text-align:center;">
+    <p>
+      このサイトは、犬専用のSNSサイトになります。</br>
+      登録がお済みでない方も検索ボタンから投稿を見ることができます。</br>
+      犬が好きな人はこのサイトを利用して楽しみましょう！
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 mt-5">
+    <h4>キーワード検索</h4>
+    <%= render 'search' %>
+  </div>
+  <div class="col-md-6 mt-5" style="text-align:center;">
+    <h4>ジャンル検索</h4>
+    <%= form_tag posts_path, method: :get do %>
+      <% @genres.each do |genre| %>
+        <div>
+          <%= link_to genre.name, posts_path(name: genre.id) %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
