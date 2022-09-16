@@ -67,3 +67,5 @@ gem "net-imap"
 gem 'devise'
 
 gem "enum_help"
+
+gem "jquery-rails"

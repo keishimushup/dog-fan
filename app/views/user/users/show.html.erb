@@ -21,19 +21,9 @@
   <% end %>
   <p>タイトル:<%= posts.title %></p>
   <p>内容:<%= posts.explanation %></p>
-  <% if posts.favorited_by?(current_user) %>
-    <p>
-      <%= link_to post_favorites_path(posts.id), method: :delete do %>
-        ♥<%= posts.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorites_path(posts.id), method: :post do %>
-        ♡<%= posts.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
+  <p class="favorite-btn_<%= posts.id %>">
+    <%= render 'user/favorites/favorite', post: posts %>
+  </p>
   <p>コメント数:<%= posts.post_comments.count %></p>
 </div>
 <% end %>
