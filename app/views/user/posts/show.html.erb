@@ -44,20 +44,22 @@
     <div class="comments card-text">
       <div class="media border mb-3 d-flex flex-column">
         <% @post.post_comments.each do |post_comment| %>
+        <div class="media_bodies">
           <div class="media-body">
             <%= image_tag post_comment.user.get_profile_image(70,70) %>
             <p><%= post_comment.user.name %></p>
           </div>
           <div class="media-body ml-2 p-3">
             <p><%= post_comment.comment %></p>
-            <div style="text-align:right;">
-              <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+            <div class="media-last">
+              <div class="media-time"><%= post_comment.created_at.strftime('%Y/%m/%d') %></div>
               <% if post_comment.user == current_user %>
                 <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment.id), method: :delete %>
                 <!--上記()内はネストした時の書き方で、親要素,子要素になる-->
               <% end %>
             </div>
           </div>
+        </div>
         <% end %>
       </div>
     </div>

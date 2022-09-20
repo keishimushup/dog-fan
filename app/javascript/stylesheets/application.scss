@@ -1,2 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.media_bodies {
+  display: flex;
+}
+
+.media-last {
+  width: 40vw;
+    display: flex;
+    justify-content: flex-end;
+    .media-time {
+      margin-right: 7px;
+    }
+}
+

@@ -22,35 +22,48 @@
     </tbody>
   <% else %>
   <!--検索モデルがPostの時-->
+  <div class="card-list-container py-5">
     <% @post.each do |post| %>
-      <div>
+      <div class="card w-75 mx-auto mt-4 shadow-lg">
         <% if user_signed_in? %>
-          <%= link_to user_path(post.user.id) do %>
-            <%= image_tag post.user.get_profile_image(100,100) %>
-            <p><%= post.user.name %></p>
-          <% end %>
           <%= link_to post_path(post.id) do %>
-            <%= image_tag post.get_image(400,400) %>
+            <%= image_tag post.get_image, class:"card-img-top"; %>
           <% end %>
+          <div class="card-body">
+            <div class="row">
+              <%= link_to user_path(post.user.id) do %>
+                <%= image_tag post.user.get_profile_image(100,100) %> <%= post.user.name %>
+              <% end %>
+            </div>
+          </div>
         <% else %>
         <!--ログインしていなければ新規登録画面へ-->
           <%= link_to new_user_registration_path do %>
-          <%= image_tag post.user.get_profile_image(100,100) %>
-          <p><%= post.user.name %></p>
+            <%= image_tag post.get_image, class:"card-img-top"; %>
           <% end %>
-          <%= link_to new_user_registration_path do %>
-            <%= image_tag post.get_image(400,400) %>
-          <% end %>
+          <div class="card-body">
+            <div class="row">
+              <%= link_to new_user_registration_path do %>
+                <%= image_tag post.user.get_profile_image(100,100) %> <%= post.user.name %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
-        <p>title：<%= post.title %></p>
-        <p>説明：<%= post.explanation %></p>
-        <!--ログインしていればいいねを押せる-->
-        <% if user_signed_in? %>
-          <p class="favorite-btn_<%= post.id %>">
-            <%= render 'user/favorites/favorite', post: post %>
-          </p>
-        <% end %>
-        <p>コメント数:<%= post.post_comments.count %></p>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <p class="card-title">タイトル：<%= post.title %></p>
+              <p class="card-explanation">内容：<%= post.explanation %></p>
+              <!--ログインしていればいいねを押せる-->
+              <% if user_signed_in? %>
+                <span class="favorite-btn_<%= post.id %>">
+                  <%= render 'user/favorites/favorite', post: post %>
+                </span>
+              <% end %>
+              <span class="card-comment">コメント数:<%= post.post_comments.count %></span>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
   <% end %>

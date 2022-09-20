@@ -5,7 +5,7 @@
     <h1 class="mt-2">ユーザー詳細</h1>
   <% end %>
 </div>
-<div class="profile-container w-75 d-flex mx-auto justify-content-around align-items-center border-bottom py-5">
+<div class="profile-container w-75 mx-auto justify-content-around align-items-center border-bottom py-5">
   <div class="row">
     <%= image_tag @user.get_profile_image(100,100) %>
     <h5 class="name display-4"><%= @user.name %></h5>
@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col-12">
             <p class="card-title">タイトル: <%= posts.title %></p>
-            <p class="card-explanation">内容: <%= posts.explanation %></p>
+            <p class="card-explanation">内容:<%= posts.explanation %></p>
             <span class="favorite-btn_<%= posts.id %>">
               <%= render 'user/favorites/favorite', post: posts %>
             </span>
