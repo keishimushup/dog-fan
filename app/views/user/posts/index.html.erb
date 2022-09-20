@@ -16,7 +16,7 @@
 </div>
 <div class="card-list-container py-5">
     <% @posts.each do |post| %>
-      <div class="card w-50 mx-auto mt-4 shadow-lg">
+      <div class="card w-75 mx-auto mt-4 shadow-lg">
         <% if user_signed_in? %>
           <%= link_to post_path(post.id) do %>
             <%= image_tag post.get_image, class:"card-img-top"; %>
@@ -24,12 +24,7 @@
           <div class="card-body">
             <div class="row">
               <%= link_to user_path(post.user.id) do %>
-                <div class="col-2">
-                  <%= image_tag post.user.get_profile_image(100,100) %>
-                </div>
-                <div class="col-10">
-                  <p><%= post.user.name %></p>
-                </div>
+                <%= image_tag post.user.get_profile_image(100,100) %> <%= post.user.name %>
               <% end %>
             </div>
           </div>
@@ -41,12 +36,7 @@
           <div class="card-body">
             <div class="row">
               <%= link_to new_user_registration_path do %>
-                <div class="col-2">
-                  <%= image_tag post.user.get_profile_image(100,100) %>
-                </div>
-                <div class="col-10">
-                  <p><%= post.user.name %></p>
-                </div>
+                <%= image_tag post.user.get_profile_image(100,100) %> <%= post.user.name %>
               <% end %>
             </div>
           </div>

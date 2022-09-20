@@ -1,40 +1,65 @@
-<h1>User::Posts#show</h1>
-<div>
-  <%= link_to user_path(@post.user.id) do %>
-    <%= image_tag @post.user.get_profile_image(100,100) %>
-    <%= @post.user.name %>
-  <% end %>
+<div class="row">
+  <h1 class="mt-2">投稿詳細</h1>
 </div>
-<div>
-  <%= image_tag @post.get_image(400,400) %>
-  <p>title：<%= @post.title %></p>
-  <p>説明：<%= @post.explanation %></p>
-  <p class="favorite-btn_<%= @post.id %>">
-    <%= render 'user/favorites/favorite', post: @post %>
-  </p>
-  <p>コメント数：<%= @post.post_comments.count %></p>
-  <% if @post.user == current_user %>
-    <%= link_to "編集", edit_post_path(@post.id) %>
-    <%= link_to "削除", post_path(@post.id), method: :delete  %>
-  <% end %>
-  <p><%= @post.created_at.strftime('%Y/%m/%d') %></p>
-</div>
+<div class="card-list-container py-5">
+  <div class="card w-75 mx-auto mt-4 shadow-lg">
+    <div>
+      <%= image_tag @post.get_image, class:"card-img-top"; %>
+      <div class="card-body">
+        <div class="row">
+          <div>
+            <%= link_to user_path(@post.user.id) do %>
+              <%= image_tag @post.user.get_profile_image(100,100) %> <%= @post.user.name %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <p class="card-title">タイトル：<%= @post.title %></p>
+            <p class="card-explanation">内容：<%= @post.explanation %></p>
+            <span class="favorite-btn_<%= @post.id %>">
+              <%= render 'user/favorites/favorite', post: @post %>
+            </span>
+            <span class="card-comment">コメント数：<%= @post.post_comments.count %></span>
+            <% if @post.user == current_user %>
+              <%= link_to "編集", edit_post_path(@post.id) %>
+              <%= link_to "削除", post_path(@post.id), method: :delete  %>
+            <% end %>
+            <p><%= @post.created_at.strftime('%Y/%m/%d') %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group col-12">
+      <%= form_with model: [@post, @post_comment] do |f| %>
+        <%= f.text_area :comment, rows: '5', style: "width:100%", placeholder: "コメントをここに" %>
+        <div style="text-align:right;">
+          <%= f.submit "送信する" %>
+        </div>
+      <% end %>
+    </div>
 
-<div>
-  <%= form_with model: [@post, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
-
-<div>
-  <% @post.post_comments.each do |post_comment| %>
-  <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.comment %><%= post_comment.created_at.strftime('%Y/%m/%d') %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment.id), method: :delete %>
-      <!----上記()内はネストした時の書き方で、親要素,子要素になる>
-    <% end %>
-  <% end %>
+    <div class="comments card-text">
+      <div class="media border mb-3 d-flex flex-column">
+        <% @post.post_comments.each do |post_comment| %>
+          <div class="media-body">
+            <%= image_tag post_comment.user.get_profile_image(70,70) %>
+            <p><%= post_comment.user.name %></p>
+          </div>
+          <div class="media-body ml-2 p-3">
+            <p><%= post_comment.comment %></p>
+            <div style="text-align:right;">
+              <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+              <% if post_comment.user == current_user %>
+                <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment.id), method: :delete %>
+                <!--上記()内はネストした時の書き方で、親要素,子要素になる-->
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
