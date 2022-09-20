@@ -37,7 +37,7 @@ class Admin::SessionsController < Devise::SessionsController
   def guest_sign_in
     admin = Admin.guest
     sign_in admin
-    redirect_to admin_root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to admin_root_path
   end
 
 end

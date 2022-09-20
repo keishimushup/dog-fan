@@ -1,28 +1,25 @@
-<div class="notice alert-primary">
-<%= notice %>
-</div>
-<h2>ユーザー一覧</h2>
+<h2 class="mt-2">ユーザー一覧</h2>
 <% @users.each do |user| %>
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>ユーザーID</th>
-      <th>ユーザー名</th>
-      <th>メールアドレス</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= image_tag user.get_profile_image(50,50) %></td>
-      <td><%= user.id %></td>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= link_to "ユーザー詳細", admin_user_path(user.id) %></td>
-      <td><%= link_to "ユーザー削除", admin_path(user.id) %></td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <th>ユーザー画像</th>
+        <th>ユーザーID</th>
+        <th>ユーザー名</th>
+        <th>メールアドレス</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= image_tag user.get_profile_image(50,50) %></td>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to "ユーザー詳細", admin_user_path(user.id) %></td>
+        <td><%= link_to "ユーザー削除", admin_path(user.id) %></td>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
