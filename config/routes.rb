@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #ユーザー側
-  devise_for :users,skip: [:passwords], controllers: {
+  devise_for :users, skip: [:passwords], controllers: {
   registrations: "user/registrations",
   sessions: 'user/sessions'
   }
@@ -11,9 +11,8 @@ Rails.application.routes.draw do
   end
 
   #管理者側
-  devise_for :admin,skip: [:passwords], controllers: {
-  sessions: "admin/sessions",
-  registrations: "admin/registrations"
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  sessions: "admin/sessions"
   }
   #ゲストログイン
   devise_scope :admin do
