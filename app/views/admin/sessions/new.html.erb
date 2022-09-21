@@ -3,7 +3,12 @@
     <li class="mt-2">
       <%= link_to "ゲストログイン（閲覧用）", admin_guest_sign_in_path, method: :post %>
     </li>
-    <h2 class="mt-2">ログイン</h2>
+    <h2 class="mt-2">管理者ログイン</h2>
+
+    <div class='login-flash-message'>
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+    </div>
 
     <%= form_with model: @admin, url: admin_session_path do |f| %>
       <div class="field mt-2">
@@ -27,8 +32,6 @@
         <%= f.submit "ログイン" %>
       </div>
     <% end %>
-    <div class="actions mt-2">
-      <%= render "admin/shared/links" %>
-    </div>
+
   </div>
 </div>
