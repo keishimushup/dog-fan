@@ -1,12 +1,12 @@
 class Post < ApplicationRecord
   has_one_attached :image
-  
+
   validates :title, presence: true
   validates :image, presence: true
   validates :explanation, presence: true
-  
+
   belongs_to :user
-  belongs_to :genre
+  belongs_to :genre, optional: true
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
