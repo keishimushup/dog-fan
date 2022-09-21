@@ -13,7 +13,7 @@ class User::PostsController < ApplicationController
 
   def index
     @genres = Genre.all
-    @posts = params[:name].present? ? Genre.find(params[:name]).posts : Post.all
+    @posts = params[:name].present? ? Genre.find(params[:name]).posts.order(created_at: :desc) : Post.all.order(created_at: :desc)
   end
 
   def show
