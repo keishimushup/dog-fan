@@ -5,6 +5,11 @@
     </li>
     <h2 class="mt-2">ログイン</h2>
 
+    <div class='login-flash-message'>
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+    </div>
+
     <%= form_with model: @user, url: user_session_path do |f| %>
 
       <div class="field mt-2">

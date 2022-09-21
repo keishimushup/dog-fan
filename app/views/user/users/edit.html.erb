@@ -1,6 +1,7 @@
 <div class="row">
   <div class="mt-2">
     <h1>プロフィール編集</h1>
+    <%= render 'user/homes/error', obj: @user %>
     <% if @user.email == 'guest@example.com'%>
       <p>ゲストユーザーはユーザー情報の編集ができません。</p>
     <% else %>
