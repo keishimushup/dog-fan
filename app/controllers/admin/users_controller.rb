@@ -12,7 +12,8 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = current_admin
     if @user.email == 'guest@example.com'
-      redirect_to admin_root_path, notice: "ゲストログインユーザーでは削除できません"
+      flash[:notice] = "ゲストログインユーザーでは削除できません"
+      redirect_to admin_root_path
     else
       user = User.find(params[:id])
       user.destroy
