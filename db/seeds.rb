@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #Admin.create!(email: "admin@admin", password: "admin@admin")
-admin = Admin.new(email: "admin@admin", password: "admin@admin")
-admin.save!
+#admin = Admin.new(email: "admin@admin", password: "admin@admin")
+#admin.save!
 
 Genre.create!(
   [
