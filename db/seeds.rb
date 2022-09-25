@@ -9,3 +9,11 @@
 #Admin.create!(email: "admin@admin", password: "admin@admin")
 admin = Admin.new(email: "admin@admin", password: "admin@admin")
 admin.save!
+
+Genre.create!(
+  [
+    {name: "小型犬"},
+    {name: "中型犬"},
+    {name: "大型犬"}
+  ]
+)
