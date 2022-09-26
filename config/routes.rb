@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "search" => "searches#search"
     resources :users, only: [:show, :edit, :update] do
+      member do
+        get :favorites
+      end
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'

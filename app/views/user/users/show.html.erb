@@ -9,13 +9,14 @@
   <div class="row">
     <%= image_tag @user.get_profile_image(100,100) %>
     <h5 class="name display-4 ml-3"><%= @user.name %></h5>
-    <div class="d-flex align-items-center pl-3 px-2">
+    <div class="d-flex align-items-center pl-3 px-1">
       <span class="follow-btn_<%= @user.id %>">
         <%= render 'user/relationships/followbtn', user: @user %>
       </span>
     </div>
-    <span class="d-flex align-items-center px-2"><%= link_to "フォロー一覧", user_followings_path(@user.id) %></span>
-    <span class="d-flex align-items-center px-2"><%= link_to "フォロワー一覧",user_followers_path(@user.id) %></span>
+    <span class="d-flex align-items-center px-1"><%= link_to "お気に入り投稿", favorites_user_path(@user.id) %></span>
+    <span class="d-flex align-items-center px-1"><%= link_to "フォロー一覧", user_followings_path(@user.id) %></span>
+    <span class="d-flex align-items-center px-1"><%= link_to "フォロワー一覧",user_followers_path(@user.id) %></span>
   </div>
 
   <div class="d-flex flex-column">
