@@ -23,8 +23,10 @@
 - 自分の愛犬の可愛さや面白さを誰かに共有したい時
 
 ## 設計書
+### ER図
 ![PF ER図](https://user-images.githubusercontent.com/108566690/192241734-cdf7cd01-84a0-43b3-b137-a834b4faf67b.jpg)
 
+### 画面遷移図
 ![PF 画面遷移図](https://user-images.githubusercontent.com/108566690/192241926-a2d0c9cc-190f-4f7c-bd6e-209f44fa1204.jpg)
 
 ## 開発環境
