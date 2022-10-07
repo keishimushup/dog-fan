@@ -5,7 +5,7 @@
   <% if @range == "User" %>
   <!--検索モデルがUserの時-->
     <tbody>
-      <% @user.each do |user| %>
+      <% @users.each do |user| %>
         <tr>
           <td><%= image_tag user.get_profile_image(50,50) %></td>
           <td><%= user.name %></td>
@@ -23,7 +23,7 @@
   <% else %>
   <!--検索モデルがPostの時-->
   <div class="card-list-container py-5">
-    <% @post.each do |post| %>
+    <% @posts.each do |post| %>
       <div class="card w-75 mx-auto mt-4 shadow-lg">
         <% if user_signed_in? %>
           <%= link_to post_path(post.id) do %>
@@ -67,3 +67,4 @@
       </div>
     <% end %>
   <% end %>
+</table>

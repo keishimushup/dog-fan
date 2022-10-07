@@ -4,10 +4,10 @@ class User::SearchesController < ApplicationController
     @range = params[:range]
     #ユーザーの名前から検索
     if @range == "User"
-      @user = User.where("name LIKE ?", "%#{params[:word]}%").order(created_at: :desc)
+      @users = User.where("name LIKE ?", "%#{params[:word]}%").order(created_at: :desc)
     #投稿のタイトルから検索
     else
-      @post = Post.where("title LIKE ?", "%#{params[:word]}%").order(created_at: :desc)
+      @posts = Post.where("title LIKE ?", "%#{params[:word]}%").order(created_at: :desc)
     end
   end
 end
